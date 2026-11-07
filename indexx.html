@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Стань курьером Яндекс Еды — от 3600 ₽ в день</title>
+<style>
+    :root {
+        --ya-yellow: #FCE000;
+        --ya-black: #1A1A1A;
+        --ya-white: #FFFFFF;
+        --ya-gray: #F5F5F5;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'YS Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--ya-white);
+        color: var(--ya-black);
+        line-height: 1.5;
+        overflow-x: hidden;
+    }
+
+    /* Шапка с полосками */
+    .header {
+        background: var(--ya-yellow);
+        padding: 20px 40px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 3px solid var(--ya-black);
+    }
+
+    .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 30px,
+            rgba(26, 26, 26, 0.08) 30px,
+            rgba(26, 26, 26, 0.08) 32px
+        );
+        pointer-events: none;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: 900;
+        color: var(--ya-black);
+        position: relative;
+        z-index: 1;
+        letter-spacing: -0.5px;
+    }
+
+    .logo span {
+        color: var(--ya-black);
+    }
+
+    /* Hero секция */
+    .hero {
+        background: var(--ya-white);
+        padding: 80px 20px 60px;
+        text-align: center;
+        position: relative;
+    }
+
+    .hero-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .hero h1 {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        letter-spacing: -1px;
+    }
+
+    .hero h1 .highlight {
+        background: var(--ya-yellow);
+        padding: 4px 16px;
+        display: inline-block;
+        border-radius: 8px;
+        box-shadow: 6px 6px 0 var(--ya-black);
+        margin: 10px 0;
+    }
+
+    .hero-text {
+        font-size: clamp(18px, 2.2vw, 24px);
+        max-width: 700px;
+        margin: 0 auto 50px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    /* Кнопка-ссылка в стиле Яндекс */
+    .cta-button {
+        display: inline-block;
+        background: var(--ya-black);
+        color: var(--ya-white);
+        padding: 22px 60px;
+        font-size: 20px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 0 #000, 0 12px 30px rgba(0,0,0,0.15);
+        border: 3px solid var(--ya-black);
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 15px,
+            rgba(252, 224, 0, 0.15) 15px,
+            rgba(252, 224, 0, 0.15) 17px
+        );
+        pointer-events: none;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 11px 0 #000, 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:active {
+        transform: translateY(4px);
+        box-shadow: 0 4px 0 #000, 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .cta-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0.8;
+        margin-bottom: 6px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .cta-main {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Секция с плюсами */
+    .benefits {
+        background: var(--ya-yellow);
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .benefits::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 50px,
+            rgba(26, 26, 26, 0.12) 50px,
+            rgba(26, 26, 26, 0.12) 54px
+        );
+        pointer-events: none;
+    }
+
+    .benefits-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .benefits-title {
+        text-align: center;
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        margin-bottom: 50px;
+        letter-spacing: -0.5px;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    .benefit-card {
+        background: var(--ya-white);
+        border: 3px solid var(--ya-black);
+        border-radius: 20px;
+        padding: 30px 25px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .benefit-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 8px 8px 0 var(--ya-black);
+    }
+
+    .benefit-icon {
+        font-size: 42px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .benefit-card h3 {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        color: var(--ya-black);
+    }
+
+    .benefit-card p {
+        font-size: 16px;
+        color: #444;
+        line-height: 1.5;
+    }
+
+    /* Секция "Как начать" */
+    .how-to {
+        background: var(--ya-white);
+        padding: 80px 20px;
+    }
+
+    .how-to-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .how-to-title {
+        text-align: center;
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        margin-bottom: 50px;
+    }
+
+    .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 30px;
+    }
+
+    .step {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .step-number {
+        width: 70px;
+        height: 70px;
+        background: var(--ya-yellow);
+        border: 3px solid var(--ya-black);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 900;
+        margin: 0 auto 20px;
+        box-shadow: 5px 5px 0 var(--ya-black);
+    }
+
+    .step h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .step p {
+        color: #555;
+        font-size: 16px;
+    }
+
+    /* Финальный CTA */
+    .final-cta {
+        background: var(--ya-black);
+        color: var(--ya-white);
+        padding: 80px 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .final-cta::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 40px,
+            rgba(252, 224, 0, 0.08) 40px,
+            rgba(252, 224, 0, 0.08) 42px
+        );
+        pointer-events: none;
+    }
+
+    .final-cta h2 {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .final-cta p {
+        font-size: 20px;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    .final-cta .cta-button {
+        background: var(--ya-yellow);
+        color: var(--ya-black);
+        border-color: var(--ya-yellow);
+        box-shadow: 0 8px 0 #b8a500, 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    .final-cta .cta-button:hover {
+        box-shadow: 0 11px 0 #b8a500, 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .final-cta .cta-button:active {
+        box-shadow: 0 4px 0 #b8a500, 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Футер */
+    footer {
+        background: var(--ya-yellow);
+        padding: 25px 20px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--ya-black);
+        border-top: 3px solid var(--ya-black);
+        position: relative;
+        overflow: hidden;
+    }
+
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 25px,
+            rgba(26, 26, 26, 0.06) 25px,
+            rgba(26, 26, 26, 0.06) 27px
+        );
+        pointer-events: none;
+    }
+
+    footer p {
+        position: relative;
+        z-index: 1;
+        font-weight: 600;
+    }
+
+    /* Анимация появления */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero h1, .hero-text, .cta-button {
+        animation: fadeUp 0.8s ease forwards;
+    }
+
+    .hero-text { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+    .cta-button { animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards; }
+
+    @media (max-width: 600px) {
+        .hero { padding: 50px 15px 40px; }
+        .benefits, .how-to, .final-cta { padding: 60px 15px; }
+        .cta-button { padding: 18px 35px; font-size: 17px; }
+        .header { padding: 15px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Яндекс <span>Еда</span> · Курьерам</div>
+</header>
+
+<section class="hero">
+    <div class="hero-container">
+        <h1>
+            Хочешь получать<br>
+            <span class="highlight">от 3600 ₽ в день?</span>
+        </h1>
+        <p class="hero-text">
+            Тогда тебе в Яндекс Еду! Регистрируйся через ссылку ниже, стань частью команды, получай бонусы и радуй людей 🚴‍♂️
+        </p>
+        <a href="ССЫЛКА_НА_РЕГИСТРАЦИЮ" class="cta-button" target="_blank" rel="noopener">
+            <span class="cta-label">👇 Жми и регистрируйся</span>
+            <span class="cta-main">Стать курьером →</span>
+        </a>
+    </div>
+</section>
+
+<section class="benefits">
+    <div class="benefits-container">
+        <h2 class="benefits-title">Почему курьеры выбирают нас 💛</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Высокий заработок</h3>
+                <p>От 3600 ₽ в день. Чем больше заказов — тем больше денег. Чаевые полностью твои!</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📅</div>
+                <h3>Гибкий график</h3>
+                <p>Работай когда удобно — утром, днём или вечером. Сам решаешь, сколько часов в день выходить.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Быстрые выплаты</h3>
+                <p>Ежедневные или еженедельные выплаты на карту. Деньги всегда под рукой.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <h3>Бонусы и акции</h3>
+                <p>Постоянные бонусы за активность, промокоды и специальные предложения для курьеров.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3>Быстрый старт</h3>
+                <p>Регистрация за 10 минут. Никакого опыта не нужно — всему научим с первого дня.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📍</div>
+                <h3>Рядом с домом</h3>
+                <p>Выбирай район сам. Работай там, где удобно — не нужно тратить время на дорогу.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">👥</div>
+                <h3>Дружная команда</h3>
+                <p>Поддержка 24/7, чат с коллегами и помощь на каждом этапе. Ты не один!</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎽</div>
+                <h3>Фирменная форма</h3>
+                <p>Выдаём термосумку и форму бесплатно. Выделяйся в потоке и чувствуй себя частью бренда.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-to">
+    <div class="how-to-container">
+        <h2 class="how-to-title">Как начать работать?</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Зарегистрируйся</h3>
+                <p>Перейди по ссылке и заполни короткую анкету за 5 минут</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Пройди обучение</h3>
+                <p>Короткий онлайн-курс — всё просто и понятно</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Получи экипировку</h3>
+                <p>Забирай термосумку и форму в ближайшем пункте</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Начни зарабатывать</h3>
+                <p>Выходи на линию и получай первые заказы уже сегодня</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta">
+    <h2>Готов начать зарабатывать?</h2>
+    <p>Присоединяйся к тысячам курьеров, которые уже получают от 3600 ₽ в день</p>
+    <a href="ССЫЛКА_НА_РЕГИСТРАЦИЮ" class="cta-button" target="_blank" rel="noopener">
+        <span class="cta-label">👇 Не откладывай на потом</span>
+        <span class="cta-main">Зарегистрироваться сейчас →</span>
+    </a>
+</section>
+
+<footer>
+    <p>© 2026 · Стань частью команды Яндекс Еды уже сегодня 💛</p>
+</footer>
+
+</body>
+</html>
